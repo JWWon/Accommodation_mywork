@@ -1,6 +1,7 @@
 package com.youngje.tgwing.accommodations.Activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.support.annotation.NonNull;
@@ -85,7 +86,6 @@ public class MapSearchActivity extends AppCompatActivity implements MapView.MapV
         createUrl = DataFormat.createSeoulOpenAPIRequestURL(DataFormat.DATATYPE.WIFI, curlocate.getLatitude(), curlocate.getLongitude());
         HttpHandler httpHandler = new HttpHandler();
 
-
         try {
             String result = httpHandler.execute(createUrl).get();
             // TODO: 2016. 10. 15. null값일때 예외처리 해야됨
@@ -95,8 +95,6 @@ public class MapSearchActivity extends AppCompatActivity implements MapView.MapV
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
-
-
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
@@ -230,14 +228,7 @@ public class MapSearchActivity extends AppCompatActivity implements MapView.MapV
             public void onItemClick(AdapterView parent, View v, int position, long id) {
                 // get item
                 SearchListViewItem item = (SearchListViewItem) parent.getItemAtPosition(position);
-
-                String titleStr = item.getTitle();
-                String descStr = item.getDesc();
-                String NumofReviewStr = item.getReviewNum();
-                String KeteGoryStr = item.getKateGory();
-                Drawable iconDrawable = item.getIcon();
-                String DistanceStr = item.getDistance();
-
+                startActivity(new Intent(getApplicationContext(), SearchListDetailView.class));
                 // TODO : use item data.
             }
         });
