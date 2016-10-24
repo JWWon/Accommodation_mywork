@@ -57,22 +57,29 @@
                 android:layout_weight="0.55"
                 android:padding="16dp">
 
-                <TextView
-                    android:id="@+id/list_detail_view_location"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:text="location"
-                    android:textSize="12sp"
-                    android:textColor="#d7d6d6"/>
-                <TextView
-                    android:id="@+id/listview_detail_phone"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|left"
-                    android:text="phone_number"
-                    android:textSize="12sp"
-                    android:textColor="#d7d6d6"/>
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/list_detail_view_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:text="location"
+                        android:textSize="12sp"
+                        android:textColor="#d7d6d6"/>
+                    <TextView
+                        android:id="@+id/listview_detail_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="phone_number"
+                        android:textSize="12sp"
+                        android:textColor="#d7d6d6"/>
+
+                </LinearLayout>
                 <TextView
                     android:id="@+id/list_detail_view_exit"
                     android:layout_width="wrap_content"
@@ -87,15 +94,29 @@
 
         </LinearLayout>
 
-        <ImageView
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="280dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/camera"/>
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:src="@drawable/test_img_palace"/>
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_margin="16dp"
+                android:src="@drawable/addreviewbutton"
+                android:layout_gravity="bottom|right"/>
+
+        </FrameLayout>
 
         <ListView
+            android:id="@+id/list_detail_view_listview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="match_parent"/>
 
     </LinearLayout>
 

@@ -65,7 +65,7 @@ public class SearchListViewAdapter extends BaseAdapter {
 
         // 아이템 내 각 위젯에 데이터 반영
         holder.titleTextView.setText(getItem(position).getTitle());
-        holder.cateGoryView.setText(getItem(position).getKateGory());
+        holder.categoryView.setText(getItem(position).getCategory());
         holder.iconImageView.setImageDrawable(getItem(position).getIcon());
         holder.descTextView.setText(getItem(position).getDesc());
         holder.ReviewNumView.setText(getItem(position).getReviewNum());
@@ -104,7 +104,7 @@ public class SearchListViewAdapter extends BaseAdapter {
         item.setIcon(icon);
         item.setDistance(distance);
         item.setTitle(title);
-        item.setKateGory(category);
+        item.setCateGory(category);
         item.setReviewNum(ReviewNum);
         item.setDesc(desc);
         item.setRatingStar(ratingbar);
@@ -118,7 +118,7 @@ public class SearchListViewAdapter extends BaseAdapter {
         private RatingBar ratingBar;
         private ImageView iconImageView;
         private TextView titleTextView;
-        private TextView cateGoryView;
+        private TextView categoryView;
         private TextView ReviewNumView;
         private TextView descTextView;
         private TextView ratingStarView;
@@ -128,7 +128,7 @@ public class SearchListViewAdapter extends BaseAdapter {
             ratingBar = (RatingBar) view.findViewById(R.id.listview_rating_bar);
             iconImageView = (ImageView) view.findViewById(R.id.listview_img);
             titleTextView = (TextView) view.findViewById(R.id.listview_title);
-            cateGoryView = (TextView) view.findViewById(R.id.listview_category);
+            categoryView = (TextView) view.findViewById(R.id.listview_category);
             ReviewNumView = (TextView) view.findViewById(R.id.listview_rating_num);
             descTextView = (TextView) view.findViewById(R.id.listview_discription);
             distanceView = (TextView) view.findViewById(R.id.listview_distance);

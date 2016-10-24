@@ -9,7 +9,7 @@ import android.graphics.drawable.Drawable;
 public class SearchListViewItem {
     private Drawable iconDrawable ;
     private String titleStr;
-    private String kateGoryStr;
+    private String cateGoryStr;
     private String ReviewNumStr;
     private String descStr;
     private float ratingStar;
@@ -20,7 +20,7 @@ public class SearchListViewItem {
     public void setIcon(Drawable icon) { iconDrawable = icon ; }
     public void setTitle(String title) { titleStr = title ; }
     public void setDesc(String desc) { descStr = desc ; }
-    public void setKateGory(String kateGory){ kateGoryStr = kateGory; }
+    public void setCateGory(String kateGory){ cateGoryStr = kateGory; }
     public void setReviewNum(String ReviewNum) {ReviewNumStr = ReviewNum;}
     public void setRatingStar(float ratingStar) {this.ratingStar = ratingStar;}
     public void setDistance(String distance) {distanceStr = distance;}
@@ -31,7 +31,7 @@ public class SearchListViewItem {
     }
     public String getTitle() { return this.titleStr ; }
     public String getDesc() { return this.descStr ; }
-    public String getKateGory(){ return this.kateGoryStr ; }
+    public String getCategory(){ return this.cateGoryStr; }
     public String getReviewNum(){return this.ReviewNumStr;}
     public float getRatingStar(){return ratingStar;}
     public String getDistance() {return distanceStr;}
