@@ -219,8 +219,8 @@ public class MapSearchActivity extends AppCompatActivity implements MapView.MapV
             com.youngje.tgwing.accommodations.Marker marker = markerList.get(i);
             int iDistance = (int) marker.getDistance();
 
-            adapter.addItem(ContextCompat.getDrawable(this,R.drawable.googlelogo), iDistance+"m",
-                    marker.getTitle(), "종류", 3, "(6)", "관광지 설명~~~~~");
+            adapter.addItem(iDistance+"m",
+                    marker.getTitle(), "종류", 3, "(6)");
         }
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {

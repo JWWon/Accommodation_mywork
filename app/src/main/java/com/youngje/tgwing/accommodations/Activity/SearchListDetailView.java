@@ -21,14 +21,13 @@ import com.youngje.tgwing.accommodations.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.youngje.tgwing.accommodations.R.drawable.face1;
-
 /**
  * Created by JiwoonWon on 2016. 10. 22..
  */
 
 public class SearchListDetailView extends AppCompatActivity{
 
+    private final static String TAG = "SearchListDetailView";
     private TextView btnExit;
 
     @Override
@@ -55,11 +54,13 @@ public class SearchListDetailView extends AppCompatActivity{
         listview.setAdapter(adapter);
 
         adapter.addItem(ContextCompat.getDrawable(this,R.drawable.face1), 4,ContextCompat.getDrawable(this,R.drawable.googlelogo)
-                ,"Nick","2016.10.23",ContextCompat.getDrawable(this,R.drawable.test_img_palace),"경복궁 정말 좋은 것 같아효",2000);
+                ,"Nick","2016.10.23",ContextCompat.getDrawable(this,R.drawable.test_img_palace),"경복궁 정말 좋은 것 같아효", 2000);
         adapter.addItem(ContextCompat.getDrawable(this,R.drawable.face1), 5,ContextCompat.getDrawable(this,R.drawable.googlelogo)
-                ,"Jason","2016.10.21",ContextCompat.getDrawable(this,R.drawable.test_img_palace),"여친이 생기면 꼭 다시 와야겠어요!",1949);
+                ,"Jason","2016.10.21",ContextCompat.getDrawable(this,R.drawable.test_img_palace),"여친이 생기면 꼭 다시 와야겠어요!", 1949);
         adapter.addItem(ContextCompat.getDrawable(this,R.drawable.face1), 3,ContextCompat.getDrawable(this,R.drawable.googlelogo)
-                ,"Mark","2016.10.20",ContextCompat.getDrawable(this,R.drawable.test_img_palace),"전 별로였는데..?",392);
+                ,"Mark","2016.10.20",ContextCompat.getDrawable(this,R.drawable.test_img_palace),"전 별로였는데..?", 392);
+
+        Log.d(TAG,"I've passed here!");
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -86,37 +87,36 @@ public class SearchListDetailView extends AppCompatActivity{
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            ViewHolder viewHolder;
-            final int pos = position;
+            ViewHolder holder;
             final Context context = parent.getContext();
 
             if (convertView == null) {
                 LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = inflater.inflate(R.layout.listview_detail_item, parent, false);
-                viewHolder = new ViewHolder(convertView);
-                convertView.setTag(viewHolder);
+                holder = new ViewHolder(convertView);
+                convertView.setTag(holder);
             } else {
-                viewHolder = (ViewHolder) convertView.getTag();
+                holder = (ViewHolder) convertView.getTag();
             }
-            viewHolder.ratingBar.setOnRatingBarChangeListener(onRatingChangedListener(viewHolder, position));
-            viewHolder.ratingBar.setTag(position);
-            viewHolder.ratingBar.setRating(getItem(position).getRatingStar());
+            SearchListReviewViewItem listViewItem = getItem(position);
 
-            SearchListReviewViewItem listViewItem = reviewViewItemList.get(position);
+            holder.ratingBar.setOnRatingBarChangeListener(onRatingChangedListener(holder, position));
+            holder.ratingBar.setTag(position);
+            holder.ratingBar.setRating(listViewItem.getRatingStar());
 
-            viewHolder.profileView.setImageDrawable(getItem(position).getProfileDrawable());
-            viewHolder.ratingScore.setText(new Float(getItem(position).getRatingScore()).toString());
-            viewHolder.userName.setText(getItem(position).getUserName());
-            viewHolder.nationalityView.setImageDrawable(getItem(position).getNationality());
-            viewHolder.reviewPictureView.setImageDrawable(getItem(position).getReviewDrawable());
-            viewHolder.dateView.setText(getItem(position).getDate());
-            viewHolder.reviewTextView.setText(getItem(position).getUserReview());
-            viewHolder.likeNumView.setText(getItem(position).getLikeNum());
+            holder.profileView.setImageDrawable(listViewItem.getProfileDrawable());
+            holder.ratingScore.setText(new Float(listViewItem.getRatingScore()).toString());
+            holder.userName.setText(listViewItem.getUserName());
+            holder.nationalityView.setImageDrawable(listViewItem.getNationality());
+            holder.reviewPictureView.setImageDrawable(listViewItem.getReviewDrawable());
+            holder.dateView.setText(listViewItem.getDate());
+            holder.reviewTextView.setText(listViewItem.getUserReview());
+//            holder.likeNumView.setText(listViewItem.getLikeNum());
 
             return convertView;
         }
 
-        private RatingBar.OnRatingBarChangeListener onRatingChangedListener(final SearchListReviewViewAdapter.ViewHolder holder,
+        private RatingBar.OnRatingBarChangeListener onRatingChangedListener(final ViewHolder holder,
                                                                             final int position) {
             return new RatingBar.OnRatingBarChangeListener() {
                 @Override
@@ -150,33 +150,36 @@ public class SearchListDetailView extends AppCompatActivity{
             item.setDate(date);
             item.setReviewDrawable(reviewDrawable);
             item.setUserReview(userReview);
-            item.setLikeNum(likeNum);
+//            item.setLikeNum(likeNum);
             reviewViewItemList.add(item);
         }
 
         private class ViewHolder {
-            private ImageView profileView;
-            private RatingBar ratingBar;
-            private TextView ratingScore;
-            private TextView userName;
-            private ImageView nationalityView;
-            private ImageView reviewPictureView;
-            private TextView dateView;
-            private TextView reviewTextView;
-            private TextView likeNumView;
+            private final ImageView profileView;
+            private final RatingBar ratingBar;
+            private final TextView ratingScore;
+            private final TextView userName;
+            private final ImageView nationalityView;
+            private final ImageView reviewPictureView;
+            private final TextView dateView;
+            private final TextView reviewTextView;
+            private final TextView likeNumView;
+            public final View view;
 
             public ViewHolder(View view) {
-                profileView = (ImageView) findViewById(R.id.listview_detail_item_profile);
-                ratingBar = (RatingBar) findViewById(R.id.listview_detail_item_ratingbar);
-                ratingScore = (TextView) findViewById(R.id.listview_detail_item_score);
-                userName = (TextView) findViewById(R.id.listview_detail_item_username);
-                nationalityView = (ImageView) findViewById(R.id.listview_detail_item_nationality);
-                reviewPictureView = (ImageView) findViewById(R.id.listview_detail_item_img);
-                dateView = (TextView) findViewById(R.id.listview_detail_item_date);
-                reviewTextView = (TextView) findViewById(R.id.listview_detail_item_review);
-                likeNumView = (TextView) findViewById(R.id.listview_detail_item_liked);
+                profileView = (ImageView) view.findViewById(R.id.listview_detail_item_profile);
+                ratingBar = (RatingBar) view.findViewById(R.id.listview_detail_item_ratingbar);
+                ratingScore = (TextView) view.findViewById(R.id.listview_detail_item_score);
+                userName = (TextView) view.findViewById(R.id.listview_detail_item_username);
+                nationalityView = (ImageView) view.findViewById(R.id.listview_detail_item_nationality);
+                reviewPictureView = (ImageView) view.findViewById(R.id.listview_detail_item_img);
+                dateView = (TextView) view.findViewById(R.id.listview_detail_item_date);
+                reviewTextView = (TextView) view.findViewById(R.id.listview_detail_item_review);
+                likeNumView = (TextView) view.findViewById(R.id.listview_detail_item_liked);
+                this.view = view;
             }
         }
+
     }
 
 ////////////////////  Model
@@ -246,7 +249,6 @@ public class SearchListDetailView extends AppCompatActivity{
         public void setRatingScore(float ratingScore) {
             this.ratingScore = ratingScore;
         }
-
 
         public int getLikeNum() {
             return likeNum;

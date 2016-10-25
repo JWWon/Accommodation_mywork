@@ -7,7 +7,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="5992b07e94d560e8fb3c19eb8c091cde128f9a44">
+        sha1="04cb0cdc83018c4f311aea676fbbd17807fce195">
         <dex dex="/Users/JiwoonWon/Accommodations/app/build/intermediates/pre-dexed/debug/instant-run-bootstrap_78a416ef1d673cb18bebd02400bd6ed64934d949.jar" />
     </item>
     <item
@@ -57,15 +57,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/JiwoonWon/Accommodations/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
-        <dex dex="/Users/JiwoonWon/Accommodations/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_7c06f3202016a8bc858348d86b4e3ca9b7cb1966.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/Users/JiwoonWon/Accommodations/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -106,7 +97,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="025166230e54c4aa0344f19d199ccb5b206d36fe">
+        sha1="86c381b9c2afe433ee0f038734a30da7ebacf5c7">
         <dex dex="/Users/JiwoonWon/Accommodations/app/build/intermediates/pre-dexed/debug/instant-run_7dbdf003ec01c1bee449561f8e56bd4d71733424.jar" />
     </item>
     <item
@@ -117,6 +108,15 @@
         revision="24.0.2"
         sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
         <dex dex="/Users/JiwoonWon/Accommodations/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_5656ed606648acd65c815f809816881076b6ae13.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/JiwoonWon/Accommodations/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="5e497d60f0cb6ce87c458ac5420a46d0fed49bd0">
+        <dex dex="/Users/JiwoonWon/Accommodations/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-25.0.0_6815eb0b89a478699cbf8324fd2569116951c8cc.jar" />
     </item>
     <item
         is-multidex="false"
@@ -156,15 +156,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/JiwoonWon/Accommodations/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/24.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
-        <dex dex="/Users/JiwoonWon/Accommodations/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-24.2.1_da35e25b610c57bff02ee517c20b226fd47e36cb.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/Users/JiwoonWon/Accommodations/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/24.2.1/jars/libs/internal_impl-24.2.1.jar"
         jumboMode="true"
         optimize="true"
@@ -192,24 +183,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/JiwoonWon/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.1/support-annotations-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
-        <dex dex="/Users/JiwoonWon/Accommodations/app/build/intermediates/pre-dexed/debug/support-annotations-24.2.1_d0b9292013cd47211f60d45fc65e100f04afe84a.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/JiwoonWon/Accommodations/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/libs/internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="867dad63c33388ff8c7644b236579355036d075f">
-        <dex dex="/Users/JiwoonWon/Accommodations/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_7dc7218e1f7f0ede929bd2b0151a81e438206560.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/Users/JiwoonWon/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.2.0/f7873a2ebde246a45c2a8d6f3247108b4c88a879/okhttp-3.2.0.jar"
         jumboMode="true"
         optimize="true"
@@ -225,6 +198,24 @@
         revision="24.0.2"
         sha1="c8f5d56f8f8a287c95e02c542baade138a378048">
         <dex dex="/Users/JiwoonWon/Accommodations/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-storage-common-9.4.0_c73437bf770050bb8ac397973b7e6896725483fc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/JiwoonWon/Accommodations/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="26674000177e45447a0326a6ad84612761199a13">
+        <dex dex="/Users/JiwoonWon/Accommodations/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-25.0.0_6c813c0adc83b180547289609777a2d51cdc53d6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/JiwoonWon/Accommodations/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
+        <dex dex="/Users/JiwoonWon/Accommodations/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_05c72b1bfa97df55e5c41382bfa43a5f14784a07.jar" />
     </item>
     <item
         is-multidex="false"
@@ -252,24 +243,6 @@
         revision="24.0.2"
         sha1="0e4d53465cc141bec58f18a894e4c4e80633fa32">
         <dex dex="/Users/JiwoonWon/Accommodations/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-database-connection-9.4.0_6f7de6f25f7645762febcf38421d9821f3011c1f.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/JiwoonWon/Accommodations/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/24.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
-        <dex dex="/Users/JiwoonWon/Accommodations/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-24.2.1_c8a9a4c1e0721b728aa0285aaf4c4bd51071d8ef.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/JiwoonWon/Accommodations/app/build/intermediates/exploded-aar/com.android.support/support-compat/24.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
-        <dex dex="/Users/JiwoonWon/Accommodations/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-24.2.1_c00a4c6e40c308acfff5f64fc69d83cc63c3d120.jar" />
     </item>
     <item
         is-multidex="false"
@@ -336,6 +309,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="/Users/JiwoonWon/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.0.0/support-annotations-25.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="a22d2cc94da87b254451fa8ed28afc30b4653773">
+        <dex dex="/Users/JiwoonWon/Accommodations/app/build/intermediates/pre-dexed/debug/support-annotations-25.0.0_6461aaf3af4ad3ee8c5d5c33cc1202fcbb1711fd.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/Users/JiwoonWon/Accommodations/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/9.4.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -369,6 +351,24 @@
         revision="24.0.2"
         sha1="88848548ab56d4fbf3d2d1b0c85bf1ff9b4c1f4b">
         <dex dex="/Users/JiwoonWon/Accommodations/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-analytics-9.4.0_ef30c211b0e3b899436b88123f292b02e61be9d2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/JiwoonWon/Accommodations/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="75b1f366ff0bbc78f8b1f7cf0dc82e7c53afef6a">
+        <dex dex="/Users/JiwoonWon/Accommodations/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-25.0.0_a481daf192705b4b4423aa12a28795ba833bc246.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/JiwoonWon/Accommodations/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="f2e3b9bc1ec25f652e8007ce7774c991e38f6a00">
+        <dex dex="/Users/JiwoonWon/Accommodations/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_4bca7567fac31c4c260cf2a66b8d57d89130be95.jar" />
     </item>
 
 </items>
