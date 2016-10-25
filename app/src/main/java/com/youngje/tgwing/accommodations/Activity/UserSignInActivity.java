@@ -89,7 +89,6 @@ public class UserSignInActivity extends BaseActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         // [START config_signin]
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -114,18 +113,23 @@ public class UserSignInActivity extends BaseActivity implements
                 FirebaseUser user = firebaseAuth.getInstance().getCurrentUser();
 
                 if (user != null) {
-
                     checkBasicUser(user);
 
                 } else {
                     Log.d(TAG, "onAuthStateChanged:signed_out");
                     setContentView(R.layout.activity_user_sign_in);
+                    findViewById(R.id.sign_in_button).setOnClickListener(UserSignInActivity.this);
+
                 }
 
             }
         };
+
+        // [END auth_state_listener]
         setContentView(R.layout.activity_splash);
         // [END auth_state_listener]
+        // Button listeners
+
 
     }
 
@@ -289,8 +293,6 @@ public class UserSignInActivity extends BaseActivity implements
                             //Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
 
                         } else { // 존재할경우 -> 불러와야함
-
-
 
                             User.setMyInstance(userValue);
                             Log.i("기존 유저정보", User.getMyInstance().toString());

@@ -10,6 +10,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EncodingUtils;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -28,6 +29,8 @@ public class DataFormat {
     private final String DAUM_KEY = "1dee5001636c3e99fb8d90496c9a3f8a";
     private final String TOUR_KEY = "6P%2BoZASTR%2FyMvmypmG5GiuDxZywpTc43N4KDgbWDU9nzKaYCi%2Bx%2BQAMUBIKS7s%2BOML3LSCUkENhFVKV4KY3%2FQg%3D%3D";
     private final String SEOUL_APP_KEY = "437770464173696f373353734d7345";
+
+
 
     // TODO: 2016. 10. 6. 이거 다 strings.xml 로 옮기고 
 
@@ -112,14 +115,15 @@ public class DataFormat {
         // 서울 강남구 삼성동 20km 반경에서 약국을 찾고 json 받기
     }
 
-    public static String createDaumKeywordRequestURL(String searchString, double lat, double lon, int radius, int sort, String format, String daumApikey) {
-        String requestUrl = "";
+    public static String createDaumKeywordRequestURL(String searchString, double lat, double lon, int radius, int sort, String format, String daumApikey) throws UnsupportedEncodingException {
+        String requestUrl;
         String curloc = Double.toString(lat) + "," + Double.toString(lon);
+        String queryEncode = URLEncoder.encode(searchString,"utf-8");
 
         requestUrl = "https://apis.daum.net/local/v1/search/keyword.json?" +
-                "apikey=" + daumApikey + "&query=" + searchString +
-                "&location=" + curloc + "&radius=" + radius +
-                "&sort=" + sort;
+                "apikey=" + daumApikey + "&query=" + queryEncode + "&location=" + curloc +
+                "&radius=" + radius + "&sort=" + sort;
+
 
         return requestUrl;
 
@@ -130,6 +134,7 @@ public class DataFormat {
 
         //https://apis.daum.net/local/v1/search/keyword.json?apikey={apikey}&query=카카오프렌즈
         // &location=37.514322572335935,127.06283102249932&radius=20000
+
     }
 
 
@@ -142,12 +147,27 @@ public class DataFormat {
 
         List<NameValuePair> params = new LinkedList<NameValuePair>();
 
-        params.add(new BasicNameValuePair("orderBy", "\"INSTL_Y\""));
-        params.add(new BasicNameValuePair("startAt", "\"" + String.valueOf(lat - 0.5) + "\""));
-        params.add(new BasicNameValuePair("endAt", "\"" + String.valueOf(lat + 0.5) + "\""));
-        //params.add(new BasicNameValuePair("orderBy", "\"INSTL_X\""));
-        //params.add(new BasicNameValuePair("startAt", String.valueOf(126.9780 - 0.03)));
-        //params.add(new BasicNameValuePair("endAt", String.valueOf(126.9780 + 0.03)));
+        if(dataformat.toString().equals("WIFI")) {
+            params.add(new BasicNameValuePair("orderBy", "\"INSTL_Y\""));
+            params.add(new BasicNameValuePair("startAt", "\"" + String.valueOf(lat - 0.5) + "\""));
+            params.add(new BasicNameValuePair("endAt", "\"" + String.valueOf(lat + 0.5) + "\""));
+            //params.add(new BasicNameValuePair("orderBy", "\"INSTL_X\""));
+            //params.add(new BasicNameValuePair("startAt", String.valueOf(126.9780 - 0.03)));
+            //params.add(new BasicNameValuePair("endAt", String.valueOf(126.9780 + 0.03)));
+
+            // TODO: 2016. 10. 22. 간격조절
+        }
+
+        else if (dataformat.toString().equals("TOILET")) {
+
+            params.add(new BasicNameValuePair("orderBy", "\"Y_WGS84\""));
+            params.add(new BasicNameValuePair("startAt", "\"" + String.valueOf(lat - 0.5) + "\""));
+            params.add(new BasicNameValuePair("endAt", "\"" + String.valueOf(lat + 0.5) + "\""));
+            //params.add(new BasicNameValuePair("orderBy", "\"X_WGS84\""));
+            //params.add(new BasicNameValuePair("startAt", "\"" + String.valueOf(lat - 0.5) + "\""));
+            //params.add(new BasicNameValuePair("endAt", "\"" + String.valueOf(lat + 0.5) + "\""));
+
+        }
 
         String paramString = URLEncodedUtils.format(params, "utf-8");
 
@@ -155,7 +175,6 @@ public class DataFormat {
 
         Log.i("requestUrl : ", requestUrl);
         return requestUrl;
-
 
     }
 
@@ -184,33 +203,50 @@ public class DataFormat {
         return requestUrl;
     }
 
+
+
     public static String createNavigationAPIRequestURL(DATATYPE dataformat, double startlat, double startLon, double endlat, double endLon) {
 
         //http://map.daum.net/route/walkset.json?sX=37.2409347&sY=127.0809925&eX= 37.2517416&eY=127.070336
         //http://map.daum.net/route/walkset.json?sX=37.2409347&sY=127.0809925&eX=37.2517416&eY=127.070336
         //http://map.daum.net/route/walkset.json?sX=37.2409347&sY=127.0809925&eX=37.2517416&eY=127.070336
 
-        String requestUrl = "http://map.daum.net/route/" + dataformat.getValue();
-
-        List<NameValuePair> params = new LinkedList<NameValuePair>();
-
-        params.add(new BasicNameValuePair("sX", "37.2409347"));
-        params.add(new BasicNameValuePair("sY", "127.0809925"));
-        //params.add(new BasicNameValuePair("eName","영통역 홈플러스"));
-        params.add(new BasicNameValuePair("eX", "37.251741"));
-        params.add(new BasicNameValuePair("eY", "127.070336"));
-        //params.add(new BasicNameValuePair("orderBy", "\"INSTL_X\""));
-        //params.add(new BasicNameValuePair("startAt", String.valueOf(126.9780 - 0.03)));
-        //params.add(new BasicNameValuePair("endAt", String.valueOf(126.9780 + 0.03)));
-
-        String paramString = URLEncodedUtils.format(params, "utf-8");
-
-        requestUrl += paramString;
+        //String requestUrl= "http://map.daum.net/route/walkset.json?" + "sX=" + Double.toString(517685) +
+        //        "&sY=" + Double.toString(1040009) +
+        //        "&eX=" + Double.toString(516152) +
+        //        "&eY=" + Double.toString(1042480);
 
 
-        String requestUrl2 = "http://map.daum.net/route/walkset.json?sX=37.2409347&sY=127.0809925&eX=37.2517416&eY=127.070336";
-        String requestUrl3 = "http://map.daum.net/route/walkset.json?sName=경희대학교+국제캠퍼스&sX=517685&sY=1040009&eName=영통역+분당선&eX=515821&eY=1042318&ids=P24254845%2CP15110708";
-        return requestUrl2;
+
+        String requestUrl= "http://map.daum.net/route/walkset.json?" + "sX=" + 517685 +
+                "&sY=" + 1040009 +
+                "&eX=" + 516152 +
+                "&eY=" + 1042480;
+//
+//
+        Log.d("으에리퀘스트유알엘",requestUrl);
+        // TODO: 2016. 10. 22. 네비게이션 마커해결
+        // TODO: 2016. 10. 22. 서울데이터 예외처리
+
+        //List<NameValuePair> params = new LinkedList<NameValuePair>();
+//
+        //params.add(new BasicNameValuePair("sX", "37.2409347"));
+        //params.add(new BasicNameValuePair("sY", "127.0809925"));
+        ////params.add(new BasicNameValuePair("eName","영통역 홈플러스"));
+        //params.add(new BasicNameValuePair("eX", "37.251741"));
+        //params.add(new BasicNameValuePair("eY", "127.070336"));
+        ////params.add(new BasicNameValuePair("orderBy", "\"INSTL_X\""));
+        ////params.add(new BasicNameValuePair("startAt", String.valueOf(126.9780 - 0.03)));
+        ////params.add(new BasicNameValuePair("endAt", String.valueOf(126.9780 + 0.03)));
+//
+        //String paramString = URLEncodedUtils.format(params, "utf-8");
+//
+        //requestUrl += paramString;
+//
+//
+        //String requestUrl2 = "http://map.daum.net/route/walkset.json?sX=37.2409347&sY=127.0809925&eX=37.2517416&eY=127.070336";
+        //String requestUrl3 = "http://map.daum.net/route/walkset.json?sName=경희대학교+국제캠퍼스&sX=517685&sY=1040009&eName=영통역+분당선&eX=515821&eY=1042318&ids=P24254845%2CP15110708";
+        return requestUrl;
 
 
     }
@@ -237,6 +273,35 @@ public class DataFormat {
 
 
     }
+
+    public static String changeCoordRequestURL(double lat, double lon, String fromCoord,String toCoord,String Format,String daumApikey) {
+        //https://apis.daum.net/local/geo/transcoord?
+        // apikey={apikey}&fromCoord=WTM&y=-4388.879299157299&x=160710.37729270622&
+        // toCoord=WGS84&output=json
+        String requestUrl = "";
+
+        requestUrl = "https://apis.daum.net/local/geo/transcoord?" +
+                "apikey=" + daumApikey + "&fromCoord=" + fromCoord + "&y=" + lat + "&x=" + lon +
+                "&toCoord=" + toCoord + "&output=" + Format;
+
+        Log.i("requestUrl : ", requestUrl);
+
+        return requestUrl;
+    }
+
+    //TODO : create naver map request url
+    public static String createNaverMapRequestURL(double start_lon, double start_lat, double end_lon, double end_lat) {
+        String ret = ""; // 결과 스트링
+        ret = "http://map.naver.com/findroute2/findWalkRoute.nhn?call=route2&output=json&coord_type=naver&search=0";
+
+        ret += "&start=" + Double.toString(start_lon) + "%2C" + Double.toString(start_lat)
+                + "&destination=" + Double.toString(end_lon) + "%2C" + Double.toString(end_lat);
+
+        Log.i("requestUrl : ",ret);
+        return ret;
+    }
+
+
 
 
 }
