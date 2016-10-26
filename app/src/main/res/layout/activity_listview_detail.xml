@@ -106,7 +106,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_margin="16dp"
-            android:src="@drawable/addreviewbutton"
+            android:src="@drawable/ic_icon_add_review"
             android:layout_gravity="bottom|right"/>
 
     </FrameLayout>

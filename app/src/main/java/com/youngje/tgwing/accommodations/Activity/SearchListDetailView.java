@@ -1,6 +1,7 @@
 package com.youngje.tgwing.accommodations.Activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -20,6 +21,7 @@ import com.youngje.tgwing.accommodations.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.Inflater;
 
 /**
  * Created by JiwoonWon on 2016. 10. 22..
@@ -29,6 +31,7 @@ public class SearchListDetailView extends AppCompatActivity{
 
     private final static String TAG = "SearchListDetailView";
     private TextView btnExit;
+    private static ImageView btnWriteReview;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,14 @@ public class SearchListDetailView extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+        btnWriteReview = (ImageView) findViewById(R.id.list_detail_view_add_review);
+        btnWriteReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), WriteReviewActivity.class));
+                Log.d(TAG, "moveTo : WriteReviewActivity.class");
             }
         });
     }

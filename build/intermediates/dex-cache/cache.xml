@@ -25,7 +25,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="7a4affbd193fe1693200bc587bf1f2779cfa4234">
+        sha1="fa67f24fc0ebb3714d24db294635e270adec3584">
         <dex dex="/Users/JiwoonWon/Accommodations/app/build/intermediates/pre-dexed/debug/instant-run-bootstrap_78a416ef1d673cb18bebd02400bd6ed64934d949.jar" />
     </item>
     <item
@@ -133,7 +133,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="86c381b9c2afe433ee0f038734a30da7ebacf5c7">
+        sha1="31c9ed809cb0923dd285e30b90fac3156bc047cf">
         <dex dex="/Users/JiwoonWon/Accommodations/app/build/intermediates/pre-dexed/debug/instant-run_7dbdf003ec01c1bee449561f8e56bd4d71733424.jar" />
     </item>
     <item
@@ -147,21 +147,21 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/JiwoonWon/Accommodations/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="5e497d60f0cb6ce87c458ac5420a46d0fed49bd0">
-        <dex dex="/Users/JiwoonWon/Accommodations/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-25.0.0_6815eb0b89a478699cbf8324fd2569116951c8cc.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/Users/JiwoonWon/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
         sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
         <dex dex="/Users/JiwoonWon/Accommodations/app/build/intermediates/pre-dexed/debug/picasso-2.5.2_5b2f2ccb9b9fa2e3486fc2b05583a9c2d4ca362c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/JiwoonWon/Accommodations/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="5e497d60f0cb6ce87c458ac5420a46d0fed49bd0">
+        <dex dex="/Users/JiwoonWon/Accommodations/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-25.0.0_6815eb0b89a478699cbf8324fd2569116951c8cc.jar" />
     </item>
     <item
         is-multidex="false"
