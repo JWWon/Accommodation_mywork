@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.UiThread;
@@ -13,6 +14,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.Visibility;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -100,11 +102,17 @@ public class CommunityMainActivity extends AppCompatActivity implements View.OnC
             case R.id.community_main_chatroom_popup_create:
                 createRoom();
                 break;
-
-            case R.id.community_main_chatroom_popup_cancel:
-                popup.dismiss();
-                break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(popup != null) {
+            popup.dismiss();
+            popup = null;
+        }
+        else
+            finish();
     }
 
     public void enterRoom(final String chatManagerId) {
@@ -198,7 +206,7 @@ public class CommunityMainActivity extends AppCompatActivity implements View.OnC
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.getValue(String.class).length() == 0) {
-                    databaseReference.child("ChatManager").push().addListenerForSingleValueEvent(
+                    databaseReference.child("ChatManager").child(User.getMyInstance().getUserId()).addListenerForSingleValueEvent(
                             new ValueEventListener() {
                                 @Override
                                 public void onDataChange(final DataSnapshot dataSnapshot) {
@@ -213,13 +221,15 @@ public class CommunityMainActivity extends AppCompatActivity implements View.OnC
                                             public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                                                 //add room id to User object
                                                 if(databaseError == null) {
-                                                    databaseReference.getRoot().child("users").child(User.getMyInstance().getUserId()).child("chatRoomID").setValue(dataSnapshot.getKey(), new DatabaseReference.CompletionListener() {
+                                                    databaseReference.getRoot().child("users").child(User.getMyInstance().getUserId()).child("chatRoomID").setValue(User.getMyInstance().getUserId(), new DatabaseReference.CompletionListener() {
                                                         @Override
                                                         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                                                             dataSnapshot.child("chatroom").child("userList").getRef().child("0").setValue(User.getMyInstance());
                                                             Intent intent = new Intent(CommunityMainActivity.this, CommunityChatroomActivity.class);
-                                                            intent.putExtra("chatManagerId", dataSnapshot.getKey());
+                                                            intent.putExtra("chatManagerId", User.getMyInstance().getUserId());
                                                             startActivityForResult(intent, COMMUNITY_CHATROOM_REQUEST_CODE);
+                                                            popup.dismiss();
+                                                            popup = null;
                                                         }
                                                     });
                                                 }
@@ -289,12 +299,15 @@ public class CommunityMainActivity extends AppCompatActivity implements View.OnC
                             //팝업 뷰 터치 가능하도록 설정
                             popup.setTouchable(true);
 
+                            popup.setOutsideTouchable(true);
+
+                            popup.setFocusable(true);
+
                             //popupwindow를 parent view 기준으로 띄움
                             popup.showAtLocation(popupView, Gravity.CENTER, 0, 0);
 
                             //register onclick listener for create and cancel
                             popupView.findViewById(R.id.community_main_chatroom_popup_create).setOnClickListener(CommunityMainActivity.this);
-                            popupView.findViewById(R.id.community_main_chatroom_popup_cancel).setOnClickListener(CommunityMainActivity.this);
 
                             //make background dim
                             if(android.os.Build.VERSION.SDK_INT <= 22) {
@@ -412,21 +425,23 @@ public class CommunityMainActivity extends AppCompatActivity implements View.OnC
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             final String chatroomId = dataSnapshot.getValue(String.class);
-                            System.out.println("chatroomId length is " + chatroomId.length());
-                            if(chatroomId.length() != 0) {
-                                databaseReference.child("ChatManager").child(chatroomId).child("chatroom").addListenerForSingleValueEvent(
-                                        new ValueEventListener() {
-                                            @Override
-                                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                                chatroomAdapter.addWithChatManagerId(dataSnapshot.getValue(Chatroom.class), chatroomId);
-                                            }
+                            if(chatroomId != null) {
+                                System.out.println("chatroomId length is " + chatroomId.length());
+                                if (chatroomId.length() != 0) {
+                                    databaseReference.child("ChatManager").child(chatroomId).child("chatroom").addListenerForSingleValueEvent(
+                                            new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                                    chatroomAdapter.addWithChatManagerId(dataSnapshot.getValue(Chatroom.class), chatroomId);
+                                                }
 
-                                            @Override
-                                            public void onCancelled(DatabaseError databaseError) {
+                                                @Override
+                                                public void onCancelled(DatabaseError databaseError) {
 
+                                                }
                                             }
-                                        }
-                                );
+                                    );
+                                }
                             }
                         }
 
@@ -565,6 +580,31 @@ public class CommunityMainActivity extends AppCompatActivity implements View.OnC
 
                     }
                 });
+
+                final TextView distanceView = (TextView)findViewById(R.id.community_main_chatroom_distance);
+                if(!User.getMyInstance().getUserId().equals(chatManagerId)) {
+                    databaseReference.child("users").child(chatManagerId).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            User user = dataSnapshot.getValue(User.class);
+                            Location myLoc = new Location("");
+                            myLoc.setLatitude(User.getMyInstance().getLat());
+                            myLoc.setLongitude(User.getMyInstance().getLon());
+
+                            Location userLoc = new Location("");
+                            userLoc.setLatitude(user.getLat());
+                            userLoc.setLongitude(user.getLon());
+                            distanceView.setText(Float.toString(myLoc.distanceTo(userLoc)));
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+                else
+                    distanceView.setVisibility(View.GONE);
 
                 //set chatroom writer name
                 TextView chatroomWriterName = (TextView)chatroomView.findViewById(R.id.community_main_chatroom_writerName);

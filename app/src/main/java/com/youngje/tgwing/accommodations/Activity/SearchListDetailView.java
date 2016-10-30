@@ -197,6 +197,7 @@ public class SearchListDetailView extends AppCompatActivity{
             item.setUserReview(userReview);
 //            item.setLikeNum(likeNum);
             reviewViewItemList.add(item);
+
         }
 
         public void addMainUI(){
