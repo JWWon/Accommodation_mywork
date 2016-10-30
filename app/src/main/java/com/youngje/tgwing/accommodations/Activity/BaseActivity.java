@@ -4,14 +4,12 @@ package com.youngje.tgwing.accommodations.Activity;
  * Created by joyeongje on 2016. 9. 12..
  */
 import android.app.ProgressDialog;
-import android.support.annotation.VisibleForTesting;
 import android.support.v7.app.AppCompatActivity;
 
 import com.youngje.tgwing.accommodations.R;
 
 public class BaseActivity extends AppCompatActivity {
 
-    @VisibleForTesting
     public ProgressDialog mProgressDialog;
 
     public void showProgressDialog() {
